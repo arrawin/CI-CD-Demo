@@ -1,0 +1,31 @@
+name: ci-cd
+
+on:
+  push:
+      branches: main
+  pull:
+      branches: main
+
+job:
+  ci: 
+    runs-on: ubuntu-latest
+    name: Build and Test Phase
+
+    steps:
+       - name: Code Checkout
+         uses: actions/checkout@v3
+
+       - name: Setting up the Node JS
+         uses: actions/setup-node@v3
+         with:
+             node-versio: '16.x'
+
+       -name : Dependencies
+        run : npm install
+
+        -name: Start the Express App
+         run: npm start
+
+         -name: Verification 
+          run: |
+              echo " The Express app is sucessfully working"
